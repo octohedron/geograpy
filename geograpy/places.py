@@ -26,7 +26,7 @@ class PlaceContext(object):
             "CREATE TABLE cities(geoname_id INTEGER, continent_code TEXT, continent_name TEXT, country_iso_code TEXT, country_name TEXT, subdivision_iso_code TEXT, subdivision_name TEXT, city_name TEXT, metro_code TEXT, time_zone TEXT)"
         )
         cur_dir = os.path.dirname(os.path.realpath(__file__))
-        with open(cur_dir + "/data/GeoLite2-City-Locations.csv", "rt") as info:
+        with open(cur_dir + "/data/GeoLite2-City-Locations.csv", "rt", encoding="utf-8") as info:
             reader = csv.reader(info)
             for row in reader:
                 cur.execute(
@@ -50,7 +50,7 @@ class PlaceContext(object):
 
     def correct_country_mispelling(self, s):
         cur_dir = os.path.dirname(os.path.realpath(__file__))
-        with open(cur_dir + "/data/ISO3166ErrorDictionary.csv", "rt") as info:
+        with open(cur_dir + "/data/ISO3166ErrorDictionary.csv", "rt", encoding="utf-8") as info:
             reader = csv.reader(info)
             for row in reader:
                 if s in remove_non_ascii(row[0]):
